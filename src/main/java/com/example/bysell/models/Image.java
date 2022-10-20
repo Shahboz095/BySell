@@ -3,8 +3,7 @@ package com.example.bysell.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.persistence.*;
 
@@ -30,8 +29,6 @@ public class Image {
     private boolean isPreviewImage;
 
     @Lob
-    @Type(type = "org.hibernate.type.ImageType")
-
     private byte[] bytes;
 
 
