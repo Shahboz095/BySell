@@ -5,6 +5,13 @@
 </head>
 <body>
 <h1>BUYSELL <a href="/login">Войти</a></h1>
+<form action="/logout" name="post">
+    <input type="hidden" name="_csrf" value="${_csrf.token}">
+    <input type="submit" value="Выйты">
+
+</form>
+
+
 <hr>
 <h4>Товары со всей Узбекистана</h4>
 

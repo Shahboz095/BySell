@@ -34,16 +34,13 @@ public class User implements UserDetails {
 
     @Column(name = "Password" , length = 1000)
     private String password;
-
-
-
+    //user ga role
     @ElementCollection(targetClass = Role.class, fetch =  FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
 
     private LocalDateTime dateOfCreated;
-
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
