@@ -1,13 +1,13 @@
 package com.example.bysell.models;
+
 import com.example.bysell.models.enums.Role;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -32,21 +32,25 @@ public class User implements UserDetails {
     @JoinColumn(name = "image_id")
     private Image avatar;
 
-    @Column(name = "Password" , length = 1000)
+    @Column(name = "Password", length = 1000)
     private String password;
-    //user ga role
-    @ElementCollection(targetClass = Role.class, fetch =  FetchType.EAGER)
+
+    //user ga role -->
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
+
+    //user bn product boglash -->
+    @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Product> products = new ArrayList();
+
 
     private LocalDateTime dateOfCreated;
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
     }
-
-
 
 
     // Security -->

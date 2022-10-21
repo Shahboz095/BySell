@@ -31,7 +31,7 @@ public class Image {
     @Lob
     private byte[] bytes;
 
-
+    // image bn product boglash -->
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Product product;
 }

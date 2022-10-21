@@ -30,20 +30,27 @@ public class Product {
     private int price;
     @Column(name = "City")
     private String city;
-    @Column(name = "Author")
-    private String author;
 
+
+    // product bn user boglash -->
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    @JoinColumn()
+    private User user;
+
+    // product bn image boglash -->
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
 
+
     private LocalDateTime dateOfCreated;
+
     @PrePersist
     private void init() {
         dateOfCreated = LocalDateTime.now();
     }
 
-    public void  addImageToProduct(Image image){
+    public void addImageToProduct(Image image) {
         image.setProduct(this);
         images.add(image);
 
