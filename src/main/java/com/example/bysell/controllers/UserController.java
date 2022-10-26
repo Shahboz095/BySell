@@ -46,6 +46,8 @@ public class UserController {
         return "redirect:/login";
     }
 
+
+
     @GetMapping("/user/{user}")
     public String userInfo(@PathVariable("user") User user, Model model, Principal principal) {
         model.addAttribute("user", user);
